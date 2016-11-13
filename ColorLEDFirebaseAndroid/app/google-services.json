@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "272006500458",
+    "firebase_url": "https://ledcolor-c7c49.firebaseio.com",
+    "project_id": "ledcolor-c7c49",
+    "storage_bucket": "ledcolor-c7c49.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:272006500458:android:a253e242d7a62db1",
+        "android_client_info": {
+          "package_name": "com.javaclimber.colorledfirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "272006500458-bmu1hunvfukmff9cgqckaehgecae236n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJHS84pMFdphcS1jf4YDIgmCDo0iQflmQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
