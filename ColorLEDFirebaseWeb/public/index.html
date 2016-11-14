@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://www.gstatic.com/firebasejs/3.5.2/firebase.js"></script>
+    <!--curl https://ledcolor-c7c49.firebaseio.com/color.json-->
+
+    <script>
+        var config = {
+            apiKey: "apiKey",
+            authDomain: "ledcolor-c7c49.firebaseapp.com",
+            databaseURL: "https://ledcolor-c7c49.firebaseio.com",
+            storageBucket: "ledcolor-c7c49.appspot.com"
+        };
+        firebase.initializeApp(config);
+
+
+        firebase.database().ref().on('value', function(snapshot) {
+            var red = snapshot.val().red;
+            var green = snapshot.val().green;
+            var blue = snapshot.val().blue;
+
+            document.getElementById('red').checked = red;
+            document.getElementById('green').checked = green;
+            document.getElementById('blue').checked = blue;
+        });
+
+
+        function saveColor() {
+            var newRed = document.getElementById('red').checked;
+            var newGreen = document.getElementById('green').checked;
+            var newBlue = document.getElementById('blue').checked;
+
+            console.log("newRed " + newRed);
+            console.log("newGreen " + newGreen);
+            console.log("newBlue " + newBlue);
+
+            firebase.database().ref('/red').set(newRed);
+            firebase.database().ref('/green').set(newGreen);
+            firebase.database().ref('/blue').set(newBlue);
+        }
+
+    </script>
+</head>
+<body>
+
+<input type="checkbox" id="red" onclick="saveColor()"/> Red<br/>
+
+<input type="checkbox" id="green" onclick="saveColor()"/> Green<br/>
+
+<input type="checkbox" id="blue" onclick="saveColor()"/>Blue<br/>
+
+</body>
+</html>
