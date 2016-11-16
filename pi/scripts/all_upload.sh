@@ -1,6 +1,6 @@
 #!/usr/bin/expect -f
 
-spawn sftp pi@192.168.1.96
+spawn sftp pi@192.168.1.102
 expect "assword:"
 send "raspberry\r"
 
