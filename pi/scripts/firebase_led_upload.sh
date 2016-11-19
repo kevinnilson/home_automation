@@ -5,7 +5,7 @@ expect "assword:"
 send "raspberry\r"
 
 expect ">"
-send "mkdir home_automation\r"
+send "mkdir -p home_automation\r"
 
 expect ">"
 send "cd home_automation\r"
