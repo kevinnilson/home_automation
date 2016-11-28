@@ -3,4 +3,5 @@ turn on ssh sudo raspi-config
 sudo crontab -e
 
 @reboot python /home/pi/home_automation/firebase_led.py &
+
 @reboot python /home/pi/home_automation/motion.py &
