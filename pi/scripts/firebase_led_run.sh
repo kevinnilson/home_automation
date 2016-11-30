@@ -1,6 +1,6 @@
 #!/usr/bin/expect -f
 
-spawn ssh pi@192.168.168.7
+spawn ssh pi@192.168.168.6
 
 expect "assword:"
 send "raspberry\r"

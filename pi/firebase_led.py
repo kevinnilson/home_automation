@@ -4,6 +4,7 @@ import sys
 import json
 import requests
 import exceptions
+import datetime
 from gpiozero import LED, Button
 
 ledR = LED(17)
@@ -14,49 +15,69 @@ ledRBulb = LED(21)
 ledGBulb = LED(20)
 ledBBulb = LED(16)
 
-url = "https://ledcolor-c7c49.firebaseio.com/.json"
+URL = "https://ledcolor-c7c49.firebaseio.com/.json"
+
+redLedState = False
+greenLedState = False
+blueLedState = False
 
 while True:
     try:
+        req_time = datetime.datetime.now()
+        print "making request " + URL
+        response = requests.get(URL).text
 
-        response = requests.get(url).text
-
-        print("response:" + response)
+        print("response: (" + str((datetime.datetime.now() - req_time)) + ")" + response)
         colors = json.JSONDecoder().decode(response)
 
         red = colors["red"]
         green = colors["green"]
         blue = colors["blue"]
 
-        if red:
-            ledR.on()
-            ledRBulb.on()
-
+        if red != redLedState:
+            if red:
+                print "turning red on"
+                ledR.on()
+                ledRBulb.on()
+            else:
+                print "turning red off"
+                ledR.off()
+                ledRBulb.off()
         else:
-            ledR.off()
-            ledRBulb.off()
+            print "ignore - no changes in red"
 
-        if green:
-            ledG.on()
-            ledGBulb.on()
+        if green != greenLedState:
+            if green:
+                print "turning green on"
+                ledG.on()
+                ledGBulb.on()
+            else:
+                print "turning green off"
+                ledG.off()
+                ledGBulb.off()
         else:
-            ledG.off()
-            ledGBulb.off()
+            print "ignore - no changes in green"
 
-        if blue:
-            ledB.on()
-            ledBBulb.on()
+        if blue != blueLedState:
+            if blue:
+                print "turning blue on"
+                ledB.on()
+                ledBBulb.on()
+            else:
+                print "turning red off"
+                ledB.off()
+                ledBBulb.off()
         else:
-            ledB.off()
-            ledBBulb.off()
+            print "ignore - no changes in blue"
 
-
-
+        redLedState = red
+        greenLedState = green
+        blueLedState = blue
 
     except exceptions.TypeError as ex:
         print(ex)
     except:
         print "Unexpected error:", sys.exc_info()[0]
-        time.sleep(.5)
+        time.sleep(1)
 
-    time.sleep(.1)
+    time.sleep(.25)
